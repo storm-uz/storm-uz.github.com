@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For My Darling ❤️</title>
+
+<style>
+body {
+    margin:0;
+    padding:0;
+    background: linear-gradient(135deg, #ffc0cb, #ff6699);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: white;
+    text-align: center;
+}
+
+#main {
+    display:none;
+    padding-top: 40px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1.2em;
+    border:none;
+    border-radius:20px;
+    background:#fff;
+    color:#ff0066;
+    cursor:pointer;
+    margin:10px;
+    font-weight:bold;
+}
+
+button:hover {
+    transform:scale(1.1);
+}
+
+#message {
+    margin-top:30px;
+    font-size:1.3em;
+    font-weight:bold;
+}
+img {
+    max-width:300px;
+    border-radius:15px;
+    margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1 id="question">💗 Will you be my Valentine? 💗</h1>
+
+<button onclick="selectYes()">YES 💘</button>
+<button onclick="selectNo()">NO 😭</button>
+
+<div id="main">
+    <img id="pic" src="" alt="Valentine Image">
+    <div id="message"></div>
+</div>
+
+<audio id="music" loop>
+    <source src="AllOfASudden.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let noCount = 0;
+const notes = [
+    "Are you sure my baby?",
+    "You must have misclicked.",
+    "Huh, my babyyyyyy click on yes.",
+    "Nooooo I'm gonna be sad.",
+    "Please my baby boo🥺",
+    "Oh darling, I’ll be a good boy.",
+    "I'm gonna poop if you don't say yes.",
+    "That's it I'm gonna poop.",
+    "Nooo my heart...",
+    "OKAY LAST TIME LET'S DO THIS AGAIN."
+];
+
+const pics = [
+    "https://pixabay.com/get/valentine-hearts-roses-3926367.png", // romantic roses & hearts :contentReference[oaicite:2]{index=2}
+    "https://pixabay.com/get/cute-valentine-flowers.jpg",       // cute Valentine vibes :contentReference[oaicite:3]{index=3}
+    "https://pixabay.com/get/romantic-love-hearts.jpg",        // romantic love hearts :contentReference[oaicite:4]{index=4}
+    "https://pixabay.com/get/valentine-background.jpg",       // pretty red hearts :contentReference[oaicite:5]{index=5}
+    "https://pixabay.com/get/valentine-hearts-cute.png"       // fun hearts :contentReference[oaicite:6]{index=6}
+];
+
+function selectYes() {
+    document.getElementById("question").style.display="none";
+    document.querySelectorAll("button").forEach(b=>b.style.display="none");
+    document.getElementById("main").style.display="block";
+    document.getElementById("pic").src = pics[0];
+    document.getElementById("message").innerText = 
+        "My hayati, I love you every sec, every hour, every day, every month, every moment ❤️\nAlways and forever — Uzair";
+}
+
+function selectNo() {
+    if(noCount < notes.length) {
+        document.getElementById("message").innerText = notes[noCount];
+        document.getElementById("pic").src = pics[noCount % pics.length];
+        noCount++;
+    } else {
+        noCount = 0;
+        document.getElementById("message").innerText = "";
+        document.getElementById("question").innerText = "💗 Will you be my Valentine again? 💗";
+    }
+}
+
+// start music automatically
+window.onload = () => {
+    document.getElementById("music").play().catch(e=>console.log("Audio needs interaction first."));
+};
+</script>
+
+</body>
+</html>
